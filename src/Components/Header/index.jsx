@@ -3,6 +3,7 @@ import Logo from "../../assets/download.svg";
 import { Stack, Typography } from "@mui/material";
 import SearchIcon from "@mui/icons-material/Search";
 import MenuIcon from "@mui/icons-material/Menu";
+import ArrowForwardIosIcon from "@mui/icons-material/ArrowForwardIos";
 import ShoppingBagOutlinedIcon from "@mui/icons-material/ShoppingBagOutlined";
 import { Link } from "react-router-dom";
 export default function Header() {
@@ -91,6 +92,12 @@ export default function Header() {
             }}
           />
         </Stack>
+      </Stack>
+      <Stack sx={{padding:'10px',width:'74%',margin:'0 auto'}}>
+        <Typography variant="span" sx={{textAlign:'center'}}>
+          Buy Mac or iPad with education savings. And last chance to get a gift
+          card up to $150. Offer ends 9/30 <Link style={{color:'#0066CC'}}> Shop<ArrowForwardIosIcon sx={{ fontSize: "14px" , verticalAlign: 'middle'}} /></Link>
+        </Typography>
       </Stack>
     </>
   );
