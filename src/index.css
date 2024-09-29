@@ -1,6 +1,19 @@
-*{
-  margin:0;
-  padding:0;
+@font-face {
+  font-family: "apple";
+  src: 
+    url("../public/assets/fonts/SF-Pro-Display-Regular.ttf") format("ttf")
+    url("../public/assets/fonts/SF-Pro-Display-Regular.woff") format("woff")
+    url("../public/assets/fonts/SF-Pro-Display-Regular.otf") format("otf");
+}
+* {
+  
+  list-style-type: none;
+  text-decoration: none;
+  /* font-family: 'apple' !important; */
+}
+body{
+  margin: 0;
+  padding: 0;
   box-sizing: border-box;
-  background-color: #F5F5F7;
+  background-color: #fff;
 }
