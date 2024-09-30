@@ -1,6 +1,9 @@
 import { Button, Stack, Typography } from "@mui/material";
 import Banner1 from "../../assets/banner1.jpg";
 import Banner2 from "../../assets/banner2.jpg";
+import Banner1Small from "../../assets/banner1small.jpg";
+import Banner2Small from "../../assets/banner2small.jpg";
+import AppleWatchBannerSmall from "../../assets/apple-watch-banner-small.jpg";
 import Logo from "../../assets/download.svg";
 import AppleWatchBanner from "../../assets/apple-watch-banner.jpg";
 import React from "react";
@@ -12,33 +15,41 @@ export default function Home() {
         {/* First Advertisement For Apple 16 Pro*/}
         <Stack
           sx={{
-            backgroundImage: `url(${Banner1})`,
+            backgroundImage: {
+              xs: `url(${Banner1Small})`,
+              sm: `url(${Banner1Small})`,
+              md: `url(${Banner1Small})`,
+              lg: `url(${Banner1})`,
+            },
             backgroundSize: "cover",
             backgroundPosition: "center",
-            height: "692px",
+            backgroundRepeat: "no-repeat",
+
+            height: { xs: "500px", md: "692px" },
             textAlign: "center",
             justifyContent: "space-between",
             padding: "40px 0",
           }}
         >
-          <Stack
-            sx={{
-              justifyContent: "start",
-            }}
-          >
+          <Stack>
             <Typography
               variant="h2"
               sx={{
                 color: "white",
-                letterSpacing: "-.005em",
+                letterSpacing: { xs: "-.05em", md: "-.005em" },
                 fontWeight: "600",
+                fontSize: { xs: "32px", sm: "44px", md: "54px" },
               }}
             >
               iPhone 16 Pro
             </Typography>
             <Typography
               variant="p"
-              sx={{ color: "white", fontSize: "28px", letterSpacing: ".007em" }}
+              sx={{
+                color: "white",
+                letterSpacing: ".007em",
+                fontSize: { xs: "18px", sm: "24px", md: "28px" },
+              }}
             >
               Hello, Apple Intelligence.
             </Typography>
@@ -52,7 +63,11 @@ export default function Home() {
               }}
             >
               <Button
-                sx={{ borderRadius: "20px", background: "#0071E3",textTransform: 'none',}}
+                sx={{
+                  borderRadius: "20px",
+                  background: "#0071E3",
+                  textTransform: "none",
+                }}
                 size="large"
                 variant="contained"
               >
@@ -60,7 +75,8 @@ export default function Home() {
               </Button>
               <Button
                 sx={{
-                  borderRadius: "20px",textTransform: 'none',
+                  borderRadius: "20px",
+                  textTransform: "none",
                   "&:hover": { background: "#0071E3", color: "#fff" },
                 }}
                 size="large"
@@ -80,10 +96,15 @@ export default function Home() {
         {/* Second Advertisement For Apple 16 */}
         <Stack
           sx={{
-            backgroundImage: `url(${Banner2})`,
+            backgroundImage: {
+              xs: `url(${Banner2Small})`,
+              sm: `url(${Banner2Small})`,
+              md: `url(${Banner2Small})`,
+              lg: `url(${Banner2})`,
+            },
             backgroundSize: "cover",
             backgroundPosition: "center",
-            height: "692px",
+            height: { xs: "500px", md: "692px" },
             textAlign: "center",
             justifyContent: "space-between",
             padding: "40px 0",
@@ -101,13 +122,19 @@ export default function Home() {
                 color: "white",
                 letterSpacing: "-.005em",
                 fontWeight: "600",
+                fontSize: { xs: "32px", sm: "44px", md: "54px" },
               }}
             >
               iPhone 16
             </Typography>
             <Typography
               variant="p"
-              sx={{ color: "white", fontSize: "28px", letterSpacing: ".007em" }}
+              sx={{
+                color: "white",
+                fontSize: "28px",
+                letterSpacing: ".007em",
+                fontSize: { xs: "18px", sm: "24px", md: "28px" },
+              }}
             >
               Hello, Apple Intelligence.
             </Typography>
@@ -121,7 +148,11 @@ export default function Home() {
               }}
             >
               <Button
-                sx={{ borderRadius: "20px", background: "#0071E3" ,textTransform: 'none',}}
+                sx={{
+                  borderRadius: "20px",
+                  background: "#0071E3",
+                  textTransform: "none",
+                }}
                 size="large"
                 variant="contained"
               >
@@ -129,7 +160,8 @@ export default function Home() {
               </Button>
               <Button
                 sx={{
-                  borderRadius: "20px",textTransform: 'none',
+                  borderRadius: "20px",
+                  textTransform: "none",
                   "&:hover": { background: "#0071E3", color: "#fff" },
                 }}
                 size="large"
@@ -149,19 +181,24 @@ export default function Home() {
         {/* Third Advertisement For Apple Watch Series 10 */}
         <Stack
           sx={{
-            backgroundImage: `url(${AppleWatchBanner})`,
+            backgroundImage: {
+              xs: `url(${AppleWatchBannerSmall})`,
+              sm: `url(${AppleWatchBannerSmall})`,
+              md: `url(${AppleWatchBannerSmall})`,
+              lg: `url(${AppleWatchBanner})`,
+            },
             backgroundSize: "cover",
             backgroundPosition: "center",
-            height: "692px",
+            height: { xs: "520px", md: "692px" },
             textAlign: "center",
-            padding: "40px 0",
+            padding: { xs: "30px 0", md: "30px 0", lg: "40px 0" },
             gap: "15px",
             marginTop: "10px",
           }}
         >
           <Stack
             sx={{
-              gap:'15px'
+              gap: { xs: "10px", sm: "15px", md: "15px" },
             }}
           >
             <Typography
@@ -170,22 +207,40 @@ export default function Home() {
                 letterSpacing: "-.005em",
                 fontWeight: "600",
                 display: "flex",
-                fontSize: "38px",
-                height:'30px',
+                fontSize: { xs: "24px", sm: "28px", md: "38px" },
+                height: "30px",
                 alignItems: "center",
                 justifyContent: "center",
                 gap: "10px",
               }}
             >
-              <img src={Logo} alt="" style={{ width: "38px" }} />
+              <img
+                src={Logo}
+                alt=""
+                style={{ width: { xs: "24px", sm: "28px", md: "38px" } }}
+              />
               WATCH
             </Typography>
-            <Typography sx={{fontSize:'19px',letterSpacing:'3px'}}>
+            <Typography
+              sx={{
+                fontSize: { xs: "14px", sm: "16px", md: "19px" },
+                letterSpacing: {
+                  xs: "1px",
+                  sm: "2px",
+                  md: "3px",
+                },
+                fontWeight: { xs: "bold" , sm:"bold" , md: "500" },
+              }}
+            >
               SERIES 10
             </Typography>
             <Typography
               variant="p"
-              sx={{ fontSize: "28px", letterSpacing: ".007em" , marginTop:'-10px' }}
+              sx={{
+                fontSize: { xs: "20px", sm: "24px", md: "28px" },
+                letterSpacing: ".007em",
+                marginTop: "-10px",
+              }}
             >
               Thinstant classic.
             </Typography>
@@ -199,7 +254,11 @@ export default function Home() {
               }}
             >
               <Button
-                sx={{ borderRadius: "20px", background: "#0071E3", textTransform: 'none', }}
+                sx={{
+                  borderRadius: "20px",
+                  background: "#0071E3",
+                  textTransform: "none",
+                }}
                 size="large"
                 variant="contained"
               >
@@ -207,7 +266,8 @@ export default function Home() {
               </Button>
               <Button
                 sx={{
-                  borderRadius: "20px",textTransform: 'none',
+                  borderRadius: "20px",
+                  textTransform: "none",
                   "&:hover": { background: "#0071E3", color: "#fff" },
                 }}
                 size="large"
