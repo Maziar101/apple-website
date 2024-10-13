@@ -1,18 +1,17 @@
 @font-face {
   font-family: "apple";
-  src: 
-    url("../public/assets/fonts/SF-Pro-Display-Regular.ttf") format("ttf")
+  src: url("../public/assets/fonts/SF-Pro-Display-Regular.ttf") format("ttf")
     url("../public/assets/fonts/SF-Pro-Display-Regular.woff") format("woff")
     url("../public/assets/fonts/SF-Pro-Display-Regular.otf") format("otf");
 }
 * {
   box-sizing: border-box;
-  
+
   list-style-type: none;
   text-decoration: none;
   /* font-family: 'apple' !important; */
 }
-body{
+body {
   margin: 0;
   padding: 0;
   background-color: #fff;
@@ -23,20 +22,17 @@ body{
   height: 705px;
 }
 
-
 @media (max-width: 700px) {
   .myCustomSwiper {
     height: 500px;
   }
 }
 
-.swiper-pagination-bullet{
-  background: red !important;
-
+.swiper-pagination-bullet {
+  background: white !important;
 }
 
-
-.myCustomSwiper .swiper-wrapper{
+.myCustomSwiper .swiper-wrapper {
   gap: 20px;
 }
 .swiper-slide-custom {
@@ -45,15 +41,15 @@ body{
   margin-right: 0 !important;
   align-items: center;
   background-color: #f0f0f0;
-  transition: transform 0.3s ease; /* انیمیشن تغییر اندازه */
+  transition: transform 0.3s ease; 
 }
 .swiper-slide-active {
-  width: 60% !important; /* اسلاید فعال 60 درصد */
-  transform: scale(1) !important; /* بدون تغییر اندازه */
+  width: 60% !important;
+  transform: scale(1) !important; 
 }
 .swiper-slide-prev,
 .swiper-slide-next {
-  width: 20% !important; /* اسلایدهای کناری 20 درصد */
+  width: 20% !important;
 }
 .content {
   text-align: center;
@@ -66,5 +62,3 @@ body{
   font-size: 16px;
   color: #666;
 }
-
-
