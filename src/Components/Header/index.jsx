@@ -20,11 +20,17 @@ export default function Header() {
             md: "center",
           },
           background: "#F7F7F9",
+          backdropFilter:`blur(10px)`,
           padding: {
             xs: "0 20px",
             sm: "0 20px",
             md: "0",
           },
+          position:"fixed",
+          top:"0",
+          left:"0",
+          right:"0",
+          zIndex:"99",
         }}
       >
         <Link to={"/"} style={{ display: "flex", alignItems: "center" }}>
