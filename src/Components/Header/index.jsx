@@ -93,12 +93,6 @@ export default function Header() {
           />
         </Stack>
       </Stack>
-      <Stack sx={{padding:'10px',width:'74%',margin:'0 auto'}}>
-        <Typography variant="span" sx={{textAlign:'center'}}>
-          Buy Mac or iPad with education savings. And last chance to get a gift
-          card up to $150. Offer ends 9/30 <Link style={{color:'#0066CC'}}> Shop<ArrowForwardIosIcon sx={{ fontSize: "14px" , verticalAlign: 'middle'}} /></Link>
-        </Typography>
-      </Stack>
     </>
   );
 }

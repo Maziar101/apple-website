@@ -23,10 +23,13 @@ import Logo from "../../assets/download.svg";
 import ApplePhoneCard from "../../assets/apple-phone-card.jpg";
 import AppleWatchBanner from "../../assets/apple-watch-banner.jpg";
 import Slider1 from "../../assets/Slider1.jpg";
+import Slider1Small from "../../assets/Slider1Small.jpg";
+import Slider2Small from "../../assets/Slider2Small.jpg";
+import Slider3Small from "../../assets/Slider3Small.jpg";
+import Slider4Small from "../../assets/Slider4Small.jpg";
 import Slider2 from "../../assets/Slider2.jpg";
 import Slider3 from "../../assets/Slider3.jpg";
 import Slider4 from "../../assets/Slider4.jpg";
-import Slider5 from "../../assets/Slider5.jpg";
 import Infinity1 from "../../assets/Infinity1.jpg";
 import Infinity2 from "../../assets/Infinity2.jpg";
 import Infinity3 from "../../assets/Infinity3.jpg";
@@ -38,7 +41,7 @@ import BlackAppleMusic from "../../assets/black-apple-music.png";
 import AppleFitness from "../../assets/apple-fitness.png";
 import AppleArcade from "../../assets/apple-arcade.png";
 import { animate, motion, useMotionValue } from "framer-motion";
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Autoplay, Pagination } from "swiper/modules";
 import "swiper/css";
@@ -52,17 +55,18 @@ export default function Home() {
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down("sm")); // تشخیص موبایل
 
+  const customPag = useRef();
   const [ref, { width }] = useMeasure();
 
   const xTranslation = useMotionValue(0);
   const fastDuration = 25;
   const slowDuration = 75;
 
-  const [duration,setDuration] = useState(fastDuration);
+  const [duration, setDuration] = useState(fastDuration);
 
   useEffect(() => {
     let controls;
-    let finalPosition = -width /4- 8;
+    let finalPosition = -width / 4 - 8;
 
     controls = animate(xTranslation, [0, finalPosition], {
       ease: "linear",
@@ -73,7 +77,7 @@ export default function Home() {
     });
 
     return controls.stop;
-  }, [xTranslation, width,duration]);
+  }, [xTranslation, width, duration]);
 
   return (
     <>
@@ -832,47 +836,68 @@ export default function Home() {
           spaceBetween={30}
           loop={true}
           autoplay={{
-            delay: 500000,
+            delay: 5000,
             disableOnInteraction: false,
           }}
+          pagination={{
+            el: customPag.current, // استفاده از مرجع customPag
+            clickable: true, // قابلیت کلیک
+          }}
           onSlideChange={(swiper) => setActiveIndex(swiper.realIndex)}
-          modules={[Autoplay]}
+          modules={[Autoplay, Pagination]}
           className="myCustomSwiper"
+          onSwiper={(swiper) => {
+            if (customPag.current) {
+              swiper.params.pagination.el = customPag.current;
+              swiper.pagination.render();
+              swiper.pagination.update();
+            }
+          }}
         >
           {[
             {
               id: 0,
               image: Slider1,
+              smallImage: Slider1Small,
               buttonText: "See the schedule",
               description: "Watch Messi, every club, and every match--lives.",
             },
             {
               id: 1,
               image: Slider2,
+              smallImage: Slider2Small,
               buttonText: "See the schedule",
               description: "Watch Messi, every club, and every match--lives.",
             },
             {
               id: 2,
               image: Slider3,
+              smallImage: Slider3Small,
               buttonText: "Stream now",
               description: "<strong>Drama</strong> • Serve.Rescue.Survive",
             },
             {
               id: 3,
               image: Slider4,
+              smallImage: Slider4Small,
               buttonText: "See the schedule",
               description: "Watch Messi, every club, and every match--lives.",
             },
           ].map((slide, index) => (
             <SwiperSlide key={slide.id} className="swiper-slide-custom">
-              <Slide slide={slide} activeIndex={activeIndex}/>
+              <Slide slide={slide} activeIndex={activeIndex} isMobile={isMobile} />
             </SwiperSlide>
           ))}
+          <div ref={customPag} className="custom-pagination"></div>
         </Swiper>
         {/* Infinity Slides */}
         <motion.div
-          style={{ display: "flex", overflow: "hidden", position: "relative" , marginTop:"20px" }}
+          style={{
+            display: "flex",
+            overflow: "hidden",
+            position: "relative",
+            marginTop: "20px",
+          }}
         >
           <motion.div
             style={{ display: "flex", gap: "10px", x: xTranslation }}
@@ -904,7 +929,7 @@ export default function Home() {
                 onHoverEnd={() => {
                   setHoveredIndex(null);
                   setAnimationSpeed(10);
-                  setDuration(fastDuration)
+                  setDuration(fastDuration);
                 }}
                 style={{
                   background: item.bgColor,
@@ -914,6 +939,7 @@ export default function Home() {
                   flexDirection: "row",
                   display: "flex",
                   paddingLeft: "10px",
+                  justifyContent:isMobile && "center",
                   alignItems: "center",
                   cursor: "pointer",
                 }}
@@ -1015,7 +1041,7 @@ export default function Home() {
                 onHoverEnd={() => {
                   setHoveredIndex(null);
                   setAnimationSpeed(10);
-                  setDuration(fastDuration)
+                  setDuration(fastDuration);
                 }}
                 style={{
                   backgroundImage: item.bgImage,
