@@ -1,8 +1,25 @@
-import { Box, List, ListItem, Stack, Typography } from "@mui/material";
-import React from "react";
+import {
+  Box,
+  List,
+  ListItem,
+  Stack,
+  Typography,
+  useMediaQuery,
+  Accordion,
+  AccordionSummary,
+  AccordionDetails,
+} from "@mui/material";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
+import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 
 export default function Footer() {
+  const isMobile = useMediaQuery("(max-width:960px)");
+  const [expanded, setExpanded] = useState(false);
+
+  const handleAccordionChange = (panel) => (event, isExpanded) => {
+    setExpanded(isExpanded ? panel : false);
+  };
   const Section = ({ title, links }) => (
     <Stack>
       <Typography variant="p" component={"h3"}>
@@ -80,11 +97,11 @@ export default function Footer() {
   return (
     <Stack
       component={"footer"}
-      sx={{ background: "#F5F5F7", mt: "50px", pt:"50px",pb:"20px" }}
+      sx={{ background: "#F5F5F7", mt: "50px", pt: "50px", pb: "20px" }}
     >
       <Stack
         sx={{
-          width: "60%",
+          width: { xs: "90%", sm: "80%", md: "60%" },
           margin: "0 auto",
         }}
       >
@@ -221,7 +238,7 @@ export default function Footer() {
         <Stack
           component={"nav"}
           sx={{
-            flexDirection: "row",
+            flexDirection: isMobile?"column":"row",
             justifyContent: "space-between",
             width: "98%",
             margin: "15px auto",
@@ -229,28 +246,77 @@ export default function Footer() {
         >
           {sectionsData.map((section, index) => (
             <Stack key={index}>
-              <Typography variant="p" component={"h3"}>
-                {section.title}
-              </Typography>
-              <List
-                sx={{ display: "flex", flexDirection: "column", gap: "10px" }}
-              >
-                {section.links.map((link, idx) => (
-                  <ListItem sx={{ p: "0" }} key={idx}>
-                    <Link to={"#"} style={{ color: "rgba(0, 0, 0, 0.72)" }}>
-                      {link.name}
-                    </Link>
-                  </ListItem>
-                ))}
-              </List>
+              {isMobile ? (
+                <Accordion
+                  expanded={expanded === index}
+                  onChange={handleAccordionChange(index)}
+                  sx={{background:"transparent",borderBottom:"1px solid #CECECF",boxShadow:"none","&:before": {
+      display: "none", // حذف خط نازکی که بین آکاردئون‌ها قرار می‌گیرد
+    },}}
+
+                  
+                >
+                  <AccordionSummary
+                    expandIcon={<ExpandMoreIcon />}
+                    aria-controls={`panel${index}-content`}
+                    id={`panel${index}-header`}
+                  >
+                    <Typography variant="h6">{section.title}</Typography>
+                  </AccordionSummary>
+                  <AccordionDetails>
+                    <List
+                      sx={{
+                        display: "flex",
+                        flexDirection: "column",
+                        gap: "10px",
+                      }}
+                    >
+                      {section.links.map((link, idx) => (
+                        <ListItem sx={{ p: "0" }} key={idx}>
+                          <Link
+                            to={link.url}
+                            style={{ color: "rgba(0, 0, 0, 0.72)" }}
+                          >
+                            {link.name}
+                          </Link>
+                        </ListItem>
+                      ))}
+                    </List>
+                  </AccordionDetails>
+                </Accordion>
+              ) : (
+                <>
+                  <Typography variant="h6" component={"h3"}>
+                    {section.title}
+                  </Typography>
+                  <List
+                    sx={{
+                      display: "flex",
+                      flexDirection: "column",
+                      gap: "10px",
+                    }}
+                  >
+                    {section.links.map((link, idx) => (
+                      <ListItem sx={{ p: "0" }} key={idx}>
+                        <Link
+                          to={link.url}
+                          style={{ color: "rgba(0, 0, 0, 0.72)" }}
+                        >
+                          {link.name}
+                        </Link>
+                      </ListItem>
+                    ))}
+                  </List>
+                </>
+              )}
             </Stack>
           ))}
         </Stack>
 
         {/* Copywrite */}
 
-        <Stack sx={{ gap: "2px" , padding:"0 10px" , fontSize:"12px"}}>
-          <Typography sx={{fontSize:"13px"}}>
+        <Stack sx={{ gap: "2px", padding: "0 10px", fontSize: "12px" }}>
+          <Typography sx={{ fontSize: "13px" }}>
             More ways to shop:{" "}
             <Link
               style={{ textDecoration: "underline", color: "blue" }}
@@ -276,10 +342,10 @@ export default function Footer() {
             }}
           ></Box>
           <Stack sx={{ flexDirection: "row", justifyContent: "space-between" }}>
-            <Typography sx={{fontSize:"12px"}}>
+            <Typography sx={{ fontSize: "12px" }}>
               Copyright © 2024 Apple Inc. All rights reserved.
             </Typography>
-            <Typography sx={{fontSize:"12px"}}>United States</Typography>
+            <Typography sx={{ fontSize: "12px" }}>United States</Typography>
           </Stack>
         </Stack>
       </Stack>
